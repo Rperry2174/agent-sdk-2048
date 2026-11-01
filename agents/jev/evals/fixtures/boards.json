@@ -1,0 +1,187 @@
+[
+  {
+    "id": "keep-big-tile-in-corner",
+    "description": "128 sits in the bottom-left corner; up or right would pull it out. Pick down or left.",
+    "grid": [
+      [
+        0,
+        0,
+        2,
+        0
+      ],
+      [
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        8,
+        4,
+        2,
+        0
+      ],
+      [
+        128,
+        32,
+        16,
+        4
+      ]
+    ],
+    "expectOneOf": [
+      "down",
+      "left"
+    ]
+  },
+  {
+    "id": "take-the-corner-merge",
+    "description": "Two 64s on the bottom row next to the corner and down does nothing: merge left so 128 lands in the corner (right would merge it away from the corner).",
+    "grid": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        4,
+        2,
+        0,
+        0
+      ],
+      [
+        64,
+        64,
+        8,
+        2
+      ]
+    ],
+    "expectOneOf": [
+      "left"
+    ],
+    "forbid": [
+      "right",
+      "up"
+    ]
+  },
+  {
+    "id": "no-invalid-move",
+    "description": "Down and left change nothing. The policy must pick a legal move (right preferred over up).",
+    "grid": [
+      [
+        2,
+        0,
+        0,
+        0
+      ],
+      [
+        4,
+        2,
+        0,
+        0
+      ],
+      [
+        8,
+        16,
+        2,
+        0
+      ],
+      [
+        64,
+        32,
+        8,
+        4
+      ]
+    ],
+    "expectOneOf": [
+      "right",
+      "up"
+    ],
+    "forbid": [
+      "down",
+      "left"
+    ]
+  },
+  {
+    "id": "only-legal-move",
+    "description": "A nearly full board where only the 8-8 pair on the bottom row can merge: left and right are the only legal moves.",
+    "grid": [
+      [
+        2,
+        4,
+        2,
+        4
+      ],
+      [
+        4,
+        2,
+        4,
+        2
+      ],
+      [
+        2,
+        4,
+        2,
+        4
+      ],
+      [
+        4,
+        2,
+        8,
+        8
+      ]
+    ],
+    "expectOneOf": [
+      "left",
+      "right"
+    ],
+    "forbid": [
+      "up",
+      "down"
+    ]
+  },
+  {
+    "id": "keep-bottom-row-full",
+    "description": "Bottom row full and descending; up would lift it. Avoid up.",
+    "grid": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        2,
+        0,
+        0
+      ],
+      [
+        2,
+        4,
+        8,
+        0
+      ],
+      [
+        256,
+        128,
+        64,
+        32
+      ]
+    ],
+    "expectOneOf": [
+      "down",
+      "left",
+      "right"
+    ],
+    "forbid": [
+      "up"
+    ]
+  }
+]

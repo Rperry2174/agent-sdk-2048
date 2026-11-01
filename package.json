@@ -1,0 +1,35 @@
+{
+  "name": "agent-sdk-2048",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Two Agent SDK players race 2048-gb side by side in mGBA: a regular model-turn agent vs a Jev decide() agent.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "scripts": {
+    "emu": "bash emu/launch.sh 8889 && bash emu/launch.sh 8890 && bash emu/arrange.sh",
+    "race": "tsx scripts/race.ts --minutes 5",
+    "race:standin": "tsx scripts/race.ts --minutes 5 --stand-in",
+    "race:regular": "tsx scripts/race.ts --minutes 5 --only regular",
+    "race:jev": "tsx scripts/race.ts --minutes 5 --only jev",
+    "race:to-game-over": "tsx scripts/race.ts --to-game-over",
+    "clip": "bash scripts/build-clip.sh",
+    "dev": "agent-sdk dev --dir agents --port 3100",
+    "check": "tsc --noEmit",
+    "validate": "agent-sdk validate --dir agents/regular && agent-sdk validate --dir agents/jev",
+    "info": "agent-sdk info --dir agents",
+    "eval": "agent-sdk eval --dir agents/jev --tag offline",
+    "eval:jev": "agent-sdk eval --dir agents/jev --tag jev"
+  },
+  "dependencies": {
+    "@grok/agent-sdk": "0.5.0",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "tsx": "^4",
+    "typescript": "^5.9.0"
+  }
+}

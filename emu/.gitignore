@@ -1,0 +1,4 @@
+roms/*.gb
+roms/*.sav
+*.ss[0-9]
+bridge-*.lua
